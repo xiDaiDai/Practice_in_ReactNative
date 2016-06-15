@@ -4,6 +4,7 @@ import {
 } from 'react-redux'
 import {
 	searchMovies,
+	getNextPageMoives,
 } from '../actions/index'
 
 import React, {
@@ -23,7 +24,7 @@ class MoviesScreen extends Component {
 	}
 
 	componentDidMount() {
-		this.props.searchMovies('');
+		this.props.searchMovies();
 	}
 
 	render() {
@@ -34,10 +35,15 @@ class MoviesScreen extends Component {
 
 		return (
 			<View style={styles.container}>
-            <MovieList ref="movieList" {...this.props}>
+		<MovieList ref="movieList" {...this.props} getNext={()=>this.getNextPageMoives()}>
             </MovieList>
+
           </View>
 		);
+	}
+
+	getNextPageMoives() {
+		this.props.getNextPageMoives();
 	}
 }
 
@@ -61,6 +67,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		searchMovies: () => dispatch(searchMovies()),
+		getNextPageMoives: () => dispatch(getNextPageMoives()),
 	};
 }
 

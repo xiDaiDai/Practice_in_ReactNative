@@ -30,27 +30,48 @@ class MovieList extends Component {
 
 	render() {
 		let {
-			movies
+			movies,
+			loadMoreMovies
 		} = this.props;
+
+
 		let content = <ListView ref = "listview"
 		dataSource = {this.state.dataSource.cloneWithRows(movies)}
 		renderRow = {(item) => this.renderRow(item)}
+		onEndReached={this.props.getNext}
+		renderFooter={()=>this.renderFooter()}
 		enableEmptySections={true}
 		automaticallyAdjustContentInsets = {false}
 		keyboardDismissMode = "on-drag"
 		keyboardShouldPersistTaps = {true}
-		showsVerticalScrollIndicator = {false}/>;
+		 />;
 		return (<View style={styles.container}>{content}</View>)
 	}
 
 	renderRow(movie) {
-		// ToastAndroid.show(movie.title, 3000);
 		return (
 			<MovieItem
 		            onSelect={()=>this.selectMovie(movie)}
 		            movie={movie}/>
 		);
 	}
+
+	renderFooter() {
+
+		if (this.props.isLoadingTail) {
+			return (
+				<View  style={{alignItems: 'center',justifyContent:'center'}}>
+				  <ProgressBarAndroid styleAttr="Inverse"/>
+                  <Text style={{fontSize:16,color:'#000'}}>loading......</Text>
+                </View>
+			);
+
+		}
+
+		return <View style={styles.scrollSpinner} />;
+
+	}
+
 
 	selectMovie(movie) {
 		ToastAndroid.show(movie.title, 3000);
@@ -73,14 +94,6 @@ var styles = StyleSheet.create({
 	},
 	scrollSpinner: {
 		marginVertical: 20,
-	},
-	rowSeparator: {
-		backgroundColor: 'rgba(0, 0, 0, 0.1)',
-		height: 1,
-		marginLeft: 4,
-	},
-	rowSeparatorHide: {
-		opacity: 0.0,
 	},
 });
 

@@ -16,10 +16,10 @@ class MovieScreen extends Component {
 
 	render() {
 		return (
-			<View style={{flex:1,justifyContent:'center',backgroundColor:'#4b4b4b'}}>
+			<View style={{flex:1,justifyContent:'center',backgroundColor:'#eee'}}>
           <View style={styles.row}>
 		<Image
-              source={{uri:this.props.route.movie.posters.thumbnail}}
+              source={{uri:this.props.route.movie.posters.original}}
             
               style={styles.cellImage}
             />
@@ -29,6 +29,10 @@ class MovieScreen extends Component {
               </Text>
               <Text style={styles.movieYear} numberOfLines={1}>
                 {this.props.route.movie.year}
+              </Text>
+
+              <Text style={styles.movieTitle}>
+                {this.props.route.movie.synopsis}
               </Text>
             </View>
           </View>
@@ -41,6 +45,8 @@ class MovieScreen extends Component {
 var styles = StyleSheet.create({
 	textContainer: {
 		flex: 1,
+		alignItems: 'center',
+		padding: 10
 	},
 	movieTitle: {
 		flex: 1,
@@ -54,15 +60,15 @@ var styles = StyleSheet.create({
 	},
 	row: {
 		alignItems: 'center',
-		backgroundColor: 'white',
-		flexDirection: 'row',
+		backgroundColor: '#eee',
+		flexDirection: 'column',
 		padding: 5,
 	},
 	cellImage: {
 		backgroundColor: '#dddddd',
-		height: 93,
+		height: 186,
 		marginRight: 10,
-		width: 60,
+		width: 120,
 	},
 	cellBorder: {
 		backgroundColor: 'rgba(0, 0, 0, 0.1)',

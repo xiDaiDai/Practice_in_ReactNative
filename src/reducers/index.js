@@ -8,7 +8,8 @@ const initialState = {
   isLoading: false,
   isLoadingTail: false,
   hasMoviesToDisplay: false,
-  movies: []
+  movies: [],
+  loadMoreMovies: [],
 }
 
 const movieReducer = (state = initialState, action) => {
@@ -42,15 +43,23 @@ const movieReducer = (state = initialState, action) => {
         isLoadingTail: false,
         hasMoviesToDisplay: action.data.total != action.data.movies.length,
         movies: action.data.movies
+
       };
+
+    case types.RECEIVED_MORE_DATA:
+
+      return {
+        ...state,
+        isLoading: false,
+        isLoadingTail: false,
+        hasMoviesToDisplay: action.data.total != action.data.movies.length,
+        loadMoreMovies: action.data.movies,
+        movies: state.movies.concat(action.data.movies),
+
+      }
 
     default:
       return state;
   }
 };
-
-/*const rootReducer = combineReducers({
-  movieData: movieReducer
-});*/
-
 export default movieReducer;
