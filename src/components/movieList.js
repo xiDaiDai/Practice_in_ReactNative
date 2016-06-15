@@ -44,9 +44,10 @@ class MovieList extends Component {
 	}
 
 	renderRow(movie) {
+		// ToastAndroid.show(movie.title, 3000);
 		return (
 			<MovieItem
-		            onSelect={(movie) => this.selectMovie(movie)}
+		            onSelect={()=>this.selectMovie(movie)}
 		            movie={movie}/>
 		);
 	}

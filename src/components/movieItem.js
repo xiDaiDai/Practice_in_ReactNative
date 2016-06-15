@@ -26,7 +26,6 @@ class MovieItem extends Component {
           <View style={styles.row}>
             <Image
               source={{uri:this.props.movie.posters.thumbnail}}
-            
               style={styles.cellImage}
             />
             <View style={styles.textContainer}>

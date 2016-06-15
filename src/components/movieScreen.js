@@ -16,15 +16,19 @@ class MovieScreen extends Component {
 
 	render() {
 		return (
-			<View style={{flex:1,backgroundColor:'#4b4b4b',justifyContent:'center'}}>
+			<View style={{flex:1,justifyContent:'center',backgroundColor:'#4b4b4b'}}>
           <View style={styles.row}>
-		
+		<Image
+              source={{uri:this.props.route.movie.posters.thumbnail}}
+            
+              style={styles.cellImage}
+            />
             <View style={styles.textContainer}>
               <Text style={styles.movieTitle} numberOfLines={2}>
                 {this.props.route.movie.title}
               </Text>
               <Text style={styles.movieYear} numberOfLines={1}>
-                {this.props.route.movie.title}
+                {this.props.route.movie.year}
               </Text>
             </View>
           </View>
