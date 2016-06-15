@@ -11,6 +11,10 @@
 <p><a href="http://f8-app.liaohuqiu.net/tutorials/building-the-f8-app/data/">构建 F8 2016 App: 第三章</a></p>
 <p><a href="http://www.jianshu.com/p/2c43860b0532">在react-native中使用redux</a></p>
 
+<p><a href="http://es6.ruanyifeng.com/#README">在react-native中使用redux</a></p>
+
+
+
 
 
 
