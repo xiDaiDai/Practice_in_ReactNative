@@ -2,25 +2,65 @@ import React, {
 	Component
 } from "react";
 import {
+	View,
+	Text,
+	Image,
 	Navigator,
-	StyleSheet
+	StyleSheet,
+	Dimensions
 } from "react-native";
 import MoviesScreen from './moviesScreen';
 import MovieScreen from '../components/movieScreen';
+import TabNavigator from 'react-native-tab-navigator';
+
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 
 class App extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedTab: 'home'
+		};
+
+	}
 
 	render() {
 		let initialRoute = {
 			name: 'movies',
 			component: MoviesScreen
 		}
-		return (<Navigator
-              style={styles.container}
-              initialRoute={initialRoute}
-              configureScene={() => Navigator.SceneConfigs.PushFromRight}
-              renderScene={(route,navigator)=>this.renderScene(route,navigator)}/>);
+
+		return (<TabNavigator
+				tabBarStyle={{ height: 50,}}>
+				  <TabNavigator.Item
+
+				    selected={this.state.selectedTab === 'home'}
+				    onPress={() => this.setState({ selectedTab: 'home' })}
+				    title="DISCOVERY"
+				    renderIcon={() => <Image  style={{height:30,width:30}} source={require('../images/dis.png')} />}
+    				renderSelectedIcon={() => <Image  style={{height:30,width:30}} source={require('../images/dis.png')} />}
+				     >
+				    <Navigator
+		              style={styles.container}
+		              initialRoute={initialRoute}
+		              configureScene={() => Navigator.SceneConfigs.PushFromRight}
+		              renderScene={(route,navigator)=>this.renderScene(route,navigator)}/>
+				  </TabNavigator.Item>
+				  <TabNavigator.Item
+					  selected={this.state.selectedTab === 'profile'}
+					  onPress={() => this.setState({ selectedTab: 'profile' })}
+					  renderIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')} />}
+    				  renderSelectedIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>}
+				      title="MINE">
+				    <View style={{flex:1,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
+				    <Image style={{resizeMode:'stretch',width:WINDOW_WIDTH,height:WINDOW_HEIGHT}} source={{uri:"http://ww1.sinaimg.cn/mw690/692a6bbcgw1f4fz6g6wppj20ms0xp13n.jpg"}}></Image>	
+				    </View>
+				  </TabNavigator.Item>
+				</TabNavigator>);
+
 	}
 
 

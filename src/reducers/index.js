@@ -41,7 +41,6 @@ const movieReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isLoadingTail: false,
-        hasMoviesToDisplay: action.data.total != action.data.movies.length,
         movies: action.data.movies
 
       };
@@ -52,7 +51,6 @@ const movieReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isLoadingTail: false,
-        hasMoviesToDisplay: action.data.total != action.data.movies.length,
         loadMoreMovies: action.data.movies,
         movies: state.movies.concat(action.data.movies),
 
