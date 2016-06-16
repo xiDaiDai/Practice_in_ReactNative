@@ -12,6 +12,7 @@ import {
 import MoviesScreen from './moviesScreen';
 import MovieScreen from '../components/movieScreen';
 import TabNavigator from 'react-native-tab-navigator';
+import Test from './Test';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -56,12 +57,13 @@ class App extends Component {
     				  renderSelectedIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>}
 				      title="MINE">
 				    <View style={{flex:1,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
-				    <Image style={{resizeMode:'stretch',width:WINDOW_WIDTH,height:WINDOW_HEIGHT}} source={{uri:"http://ww1.sinaimg.cn/mw690/692a6bbcgw1f4fz6g6wppj20ms0xp13n.jpg"}}></Image>	
+				    	   <Test/>
 				    </View>
 				  </TabNavigator.Item>
 				</TabNavigator>);
-
 	}
+
+	// 
 
 
 
