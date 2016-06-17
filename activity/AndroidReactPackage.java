@@ -33,7 +33,8 @@ public class AndroidReactPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         // TODO Auto-generated method stub
-        return Collections.emptyList();
+        return Arrays.<ViewManager>asList(
+                new ReactWebViewManager());
     }
 
 }

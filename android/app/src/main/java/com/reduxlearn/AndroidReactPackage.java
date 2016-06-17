@@ -7,22 +7,23 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.uimanager.ViewManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
 
 public class AndroidReactPackage implements ReactPackage {
 
 
-  @Override
-  public List<NativeModule> createNativeModules(
-                              ReactApplicationContext reactContext) {
-    List<NativeModule> modules = new ArrayList<>();
-    // 这里的MyToastModule是之前他添加的module
-    modules.add(new AndroidToastModule(reactContext));
-    modules.add(new ImagePickerModule(reactContext));
+    @Override
+    public List<NativeModule> createNativeModules(
+            ReactApplicationContext reactContext) {
+        List<NativeModule> modules = new ArrayList<>();
+        // 这里的MyToastModule是之前他添加的module
+        modules.add(new AndroidToastModule(reactContext));
+        modules.add(new ImagePickerModule(reactContext));
 
-    return modules;
-  }
+        return modules;
+    }
 
     @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
@@ -33,7 +34,8 @@ public class AndroidReactPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         // TODO Auto-generated method stub
-        return Collections.emptyList();
+        return Arrays.<ViewManager>asList(
+                new ReactWebViewManager());//////
     }
 
 }

@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import AndroidToast from './Toast';
 import ImagePickerModule from './ImagePicker';
+import RCTWebView from './WebView';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -33,38 +34,42 @@ class Test extends Component {
 	render() {
 
 		return (
-			<View style={{flex:1,flexDirection:'column',backgroundColor:'#fff'}}>
+			<View style={{flex:1,flexDirection:'column',backgroundColor:'#fff',padding:10,alignItems:'center'}}>
 				 
 					<TouchableHighlight onPress={()=>this.onClick()}>
 				 		 <Text style={{textAlign:'center',
-				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH,padding:5,
-				 		 margin:5,backgroundColor:'#e00'}}>
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
 				 		   call Android Toast and Emit the toastShowEvent
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onClickCallBack()}>
 				 		 <Text style={{textAlign:'center',
-				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH,padding:5,
-				 		 margin:5,backgroundColor:'#e00'}}>
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
 				 		   call Android with callBack
 				 		 </Text>
 					</TouchableHighlight>
 
 					<TouchableHighlight onPress={()=>this.onClickPromise()}>
 				 		 <Text style={{textAlign:'center',
-				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH,padding:5,
-				 		 margin:5,backgroundColor:'#e00'}}>
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
 				 		  call Android with Promise
 				 		 </Text>
 					</TouchableHighlight>
 
 					<TouchableHighlight onPress={()=>this.onClickPickerImage()}>
 				 		 <Text style={{textAlign:'center',
-				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH,padding:5,
-				 		 margin:5,backgroundColor:'#e00'}}>
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
 				 		  call Android imagePicker
 				 		 </Text>
 					</TouchableHighlight>
+
+					<RCTWebView url="http://gank.io" style={{width:WINDOW_WIDTH,flex:1,borderWidth:2,borderColor:'#000'}}>
+						
+					</RCTWebView>
 				 
             </View>
 		);
