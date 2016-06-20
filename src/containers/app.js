@@ -13,6 +13,7 @@ import MoviesScreen from './moviesScreen';
 import MovieScreen from '../components/movieScreen';
 import TabNavigator from 'react-native-tab-navigator';
 import Test from './Test';
+import codePush from "react-native-code-push";
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -28,6 +29,11 @@ class App extends Component {
 
 	}
 
+
+	componentDidMount() {
+		codePush.sync();
+	}
+
 	render() {
 		let initialRoute = {
 			name: 'movies',
@@ -40,7 +46,7 @@ class App extends Component {
 
 				    selected={this.state.selectedTab === 'home'}
 				    onPress={() => this.setState({ selectedTab: 'home' })}
-				    title="DISCOVERY"
+				    title="Top100"
 				    renderIcon={() => <Image  style={{height:30,width:30}} source={require('../images/dis.png')} />}
     				renderSelectedIcon={() => <Image  style={{height:30,width:30}} source={require('../images/dis.png')} />}
 				     >
@@ -54,8 +60,10 @@ class App extends Component {
 					  selected={this.state.selectedTab === 'profile'}
 					  onPress={() => this.setState({ selectedTab: 'profile' })}
 					  renderIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')} />}
-    				  renderSelectedIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>}
-				      title="MINE">
+		renderSelectedIcon = {
+			() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>
+		}
+		title = "CodePush" >
 				    <View style={{flex:1,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
 				    	   <Test/>
 				    </View>
