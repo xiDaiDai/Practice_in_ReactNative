@@ -24,7 +24,10 @@ class MovieItem extends Component {
       <TouchableElement
           onPress={this.props.onSelect}>
           <View style={styles.row}>
-            
+             <Image
+              source={{uri:this.props.movie.posters.thumbnail}}
+              style={styles.cellImage}
+            />
             <View style={styles.textContainer}>
             <Text style={styles.movieYear} numberOfLines={1}>
                 {this.props.movie.year}
@@ -34,10 +37,7 @@ class MovieItem extends Component {
               </Text>
               
             </View>
-            <Image
-              source={{uri:this.props.movie.posters.thumbnail}}
-              style={styles.cellImage}
-            />
+           
           </View>
         </TouchableElement>
 

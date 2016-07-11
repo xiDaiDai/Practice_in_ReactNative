@@ -17,6 +17,7 @@ import ImagePickerModule from './ImagePicker';
 import RCTWebView from './WebView';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
+import PanResponder from './panResponderDemo';
 
 class Test extends Component {
 
@@ -35,7 +36,7 @@ class Test extends Component {
 
 		return (
 			<View style={{flex:1,flexDirection:'column',backgroundColor:'#fff',padding:10,alignItems:'center'}}>
-				 
+
 					<TouchableHighlight onPress={()=>this.onClick()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
@@ -66,11 +67,19 @@ class Test extends Component {
 				 		  call Android imagePicker
 				 		 </Text>
 					</TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.onShowPanResponder()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
+				 		  ShowPanResponder
+				 		 </Text>
+					</TouchableHighlight>
+
 
 					<RCTWebView url="http://gank.io" style={{width:WINDOW_WIDTH,flex:1,borderWidth:2,borderColor:'#000'}}>
-						
+
 					</RCTWebView>
-				 
+
             </View>
 		);
 	}
@@ -103,6 +112,12 @@ class Test extends Component {
 	onClickPickerImage() {
 		ImagePickerModule.pickImage().then((url) => AndroidToast.showToast('pic url:' + url, AndroidToast.SHORT),
 			() => AndroidToast.showToast("fail", AndroidToast.SHORT));
+	}
+
+	onShowPanResponder() {
+		this.props.navigator.push({
+			component: PanResponder,
+		})
 	}
 }
 

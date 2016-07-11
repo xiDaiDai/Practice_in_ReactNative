@@ -60,18 +60,17 @@ class App extends Component {
 					  selected={this.state.selectedTab === 'profile'}
 					  onPress={() => this.setState({ selectedTab: 'profile' })}
 					  renderIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')} />}
-		renderSelectedIcon = {
-			() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>
-		}
-		title = "CodePush" >
-				    <View style={{flex:1,backgroundColor:'#fff',justifyContent:'center',alignItems:'center'}}>
-				    	   <Test/>
-				    </View>
+						renderSelectedIcon = {() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>} title = "CodePush" >
+				    <Navigator
+		              style={styles.container}
+		              initialRoute={{component: Test}}
+		              configureScene={() => Navigator.SceneConfigs.PushFromRight}
+		              renderScene={(route,navigator)=>this.renderScene(route,navigator)}/>
 				  </TabNavigator.Item>
 				</TabNavigator>);
 	}
 
-	// 
+	//
 
 
 
