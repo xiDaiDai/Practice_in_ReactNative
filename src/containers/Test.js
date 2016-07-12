@@ -12,12 +12,13 @@ import {
 	Dimensions,
 	DeviceEventEmitter
 } from 'react-native';
-import AndroidToast from './Toast';
-import ImagePickerModule from './ImagePicker';
-import RCTWebView from './WebView';
+import AndroidToast from '../tests/Toast';
+import ImagePickerModule from '../tests/ImagePicker';
+import RCTWebView from '../tests/WebView';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
-import PanResponder from './panResponderDemo';
+import PanResponder from '../tests/panResponseDemo';
+import IMUI from '../tests/imuiDemo';
 
 class Test extends Component {
 
@@ -74,6 +75,13 @@ class Test extends Component {
 				 		  ShowPanResponder
 				 		 </Text>
 					</TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.onShowIMUI()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
+				 		  ShowIMUI
+				 		 </Text>
+					</TouchableHighlight>
 
 
 					<RCTWebView url="http://gank.io" style={{width:WINDOW_WIDTH,flex:1,borderWidth:2,borderColor:'#000'}}>
@@ -117,6 +125,12 @@ class Test extends Component {
 	onShowPanResponder() {
 		this.props.navigator.push({
 			component: PanResponder,
+		})
+	}
+
+	onShowIMUI() {
+		this.props.navigator.push({
+			component: IMUI,
 		})
 	}
 }
