@@ -14,8 +14,12 @@
 <p><a href="http://www.jianshu.com/p/2c43860b0532">在react-native中使用redux</a></p>
 <p><a href="http://es6.ruanyifeng.com/#README">es6</a></p>
 
-###CodePush 热更新JS代码
-<p><a href="http://microsoft.github.io/code-push/index.html#getting_started">CodePush</a></p>
+* <a href="http://microsoft.github.io/code-push/index.html#getting_started">CodePush 热更新JS代码</a>
+* 原生模块，回调以及事件封装
+* 原生UI封装
+* 手势响应系统例子
+* 极简聊天UI
+
 
 
 
