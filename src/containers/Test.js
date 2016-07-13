@@ -43,14 +43,14 @@ class Test extends Component {
 					<TouchableHighlight onPress={()=>this.onClick()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#ff8c00'}}>
 				 		   call Android Toast and Emit the toastShowEvent
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onClickCallBack()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#ff8c00'}}>
 				 		   call Android with callBack
 				 		 </Text>
 					</TouchableHighlight>
@@ -58,7 +58,7 @@ class Test extends Component {
 					<TouchableHighlight onPress={()=>this.onClickPromise()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#ff8c00'}}>
 				 		  call Android with Promise
 				 		 </Text>
 					</TouchableHighlight>
@@ -66,35 +66,35 @@ class Test extends Component {
 					<TouchableHighlight onPress={()=>this.onClickPickerImage()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#ff8c00'}}>
 				 		  call Android imagePicker
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onShowWebview()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#00ced1'}}>
 				 		  ShowWebview
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onShowPanResponder()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#ffa07a'}}>
 				 		  ShowPanResponder
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onShowIMUI()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#cd5c5c'}}>
 				 		  ShowIMUI
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onShowVectorIcon()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#272822'}}>
+				 		 margin:5,backgroundColor:'#ff2822'}}>
 				 		  ShowVectorIcon
 				 		 </Text>
 					</TouchableHighlight>

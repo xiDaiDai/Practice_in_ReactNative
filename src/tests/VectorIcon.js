@@ -34,7 +34,7 @@ class VectorIcon extends Component {
         <Icon.Button name="facebook" backgroundColor="#3b5998">
           <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
         </Icon.Button>
-        <Icon name="android" size={30} color="#ff0" style={{margin:10}}/>
+        <Icon name="android" size={30} color="#0f0" style={{margin:10}}/>
         <Icon name="apple" size={30} color="#000" style={{margin:10}}/>
         <Icon name="chrome" size={30} color="#120" style={{margin:10}}/>
         <Icon name="github" size={30} color="#f60" style={{margin:10}}/>
@@ -42,7 +42,7 @@ class VectorIcon extends Component {
         <Icon name="qq" size={30} color="#f00" style={{margin:10}}/>
         <Icon name="twitter" size={30} color="#f0f" style={{margin:10}}/>
         <Icon name="windows" size={30} color="#ee8" style={{margin:10}}/>
-        <Icon name="wechat" size={30} color="#f00" style={{margin:10}}/>
+        <Icon name="wechat" size={30} color="#0f0" style={{margin:10}}/>
 
       </View>
     );
