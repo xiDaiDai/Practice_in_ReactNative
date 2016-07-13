@@ -14,11 +14,13 @@ import {
 } from 'react-native';
 import AndroidToast from '../tests/Toast';
 import ImagePickerModule from '../tests/ImagePicker';
-import RCTWebView from '../tests/WebView';
+
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 import PanResponder from '../tests/panResponseDemo';
 import IMUI from '../tests/imuiDemo';
+import VectorIcon from '../tests/VectorIcon';
+import WebView from '../tests/webviewDemo';
 
 class Test extends Component {
 
@@ -68,6 +70,13 @@ class Test extends Component {
 				 		  call Android imagePicker
 				 		 </Text>
 					</TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.onShowWebview()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
+				 		  ShowWebview
+				 		 </Text>
+					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.onShowPanResponder()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
@@ -82,11 +91,16 @@ class Test extends Component {
 				 		  ShowIMUI
 				 		 </Text>
 					</TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.onShowVectorIcon()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#272822'}}>
+				 		  ShowVectorIcon
+				 		 </Text>
+					</TouchableHighlight>
 
 
-					<RCTWebView url="http://gank.io" style={{width:WINDOW_WIDTH,flex:1,borderWidth:2,borderColor:'#000'}}>
 
-					</RCTWebView>
 
             </View>
 		);
@@ -131,6 +145,18 @@ class Test extends Component {
 	onShowIMUI() {
 		this.props.navigator.push({
 			component: IMUI,
+		})
+	}
+
+	onShowVectorIcon() {
+		this.props.navigator.push({
+			component: VectorIcon,
+		})
+	}
+
+	onShowWebview() {
+		this.props.navigator.push({
+			component: WebView,
 		})
 	}
 }

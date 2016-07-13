@@ -17,6 +17,7 @@ import codePush from "react-native-code-push";
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class App extends Component {
@@ -41,14 +42,14 @@ class App extends Component {
 		}
 
 		return (<TabNavigator
-				tabBarStyle={{ height: 50,}}>
+				tabBarStyle={{ height: 55,}}>
 				  <TabNavigator.Item
 
 				    selected={this.state.selectedTab === 'home'}
 				    onPress={() => this.setState({ selectedTab: 'home' })}
 				    title="Top100"
-				    renderIcon={() => <Image  style={{height:30,width:30}} source={require('../images/dis.png')} />}
-    				renderSelectedIcon={() => <Image  style={{height:30,width:30}} source={require('../images/dis.png')} />}
+				    renderIcon={() => <Icon name="heartbeat" size={30} color="#444"/>}
+    				renderSelectedIcon={() => <Icon name="heartbeat" size={30} color="#f00"/>}
 				     >
 				    <Navigator
 		              style={styles.container}
@@ -59,8 +60,8 @@ class App extends Component {
 				  <TabNavigator.Item
 					  selected={this.state.selectedTab === 'profile'}
 					  onPress={() => this.setState({ selectedTab: 'profile' })}
-					  renderIcon={() => <Image style={{height:30,width:30}} source={require('../images/mine.png')} />}
-						renderSelectedIcon = {() => <Image style={{height:30,width:30}} source={require('../images/mine.png')}/>} title = "CodePush" >
+					  renderIcon={() => <Icon name="chrome" size={30} color="#444"/>}
+						renderSelectedIcon = {() => <Icon name="chrome" size={30} color="#f00"/>} title = "CodePush" >
 				    <Navigator
 		              style={styles.container}
 		              initialRoute={{component: Test}}
@@ -70,7 +71,7 @@ class App extends Component {
 				</TabNavigator>);
 	}
 
-	//
+	// <Image style={{height:30,width:30}} source={require('../images/mine.png')} />
 
 
 

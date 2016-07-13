@@ -1,6 +1,8 @@
 package com.reduxlearn;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -42,7 +44,9 @@ public class MainActivity extends ReactActivity {
 
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new AndroidReactPackage(),  new CodePush(this.getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), this, BuildConfig.DEBUG)
+            new VectorIconsPackage(),
+            new AndroidReactPackage(),
+                new CodePush(this.getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), this, BuildConfig.DEBUG)
 
         );
     }
