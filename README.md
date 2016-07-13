@@ -1,9 +1,8 @@
 
-## redux simple sample
+## redux && others demo
 <p><img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-175909.png" height="216" width="120" />
 <img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-150405.png" height="216" width="120" />
-<img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-150500.png" height="216" width="120" />
-<img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-150613.png" height="216" width="120" />
+ 
  
 </p>
 ###redux 相关学习资料
