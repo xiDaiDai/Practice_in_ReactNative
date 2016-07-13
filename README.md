@@ -19,7 +19,7 @@
 * 原生模块，回调以及事件封装
 * 原生UI封装
 * 手势响应系统例子
-* 极简聊天UI
+* <a href="http://www.himigame.com/react-native/2346.html">极简聊天UI</a>
 * <a href="http://microsoft.github.io/code-push/index.html#getting_started">矢量图标使用</a>
 
 
