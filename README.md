@@ -1,9 +1,8 @@
 
-## redux simple sample
+## redux && others demo
 <p><img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-175909.png" height="216" width="120" />
 <img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-150405.png" height="216" width="120" />
-<img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-150500.png" height="216" width="120" />
-<img src="https://github.com/xiDaiDai/Redux_Practice_in_ReactNative/blob/master/screenshots/device-2016-06-15-150613.png" height="216" width="120" />
+ 
  
 </p>
 ###redux 相关学习资料
@@ -19,7 +18,7 @@
 * 原生模块，回调以及事件封装
 * 原生UI封装
 * 手势响应系统例子
-* 极简聊天UI
+* <a href="http://www.himigame.com/react-native/2346.html">极简聊天UI</a>
 * <a href="http://microsoft.github.io/code-push/index.html#getting_started">矢量图标使用</a>
 
 
