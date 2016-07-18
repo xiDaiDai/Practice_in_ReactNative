@@ -21,6 +21,7 @@
 * <a href="http://www.himigame.com/react-native/2346.html">极简聊天UI</a>
 * <a href="http://microsoft.github.io/code-push/index.html#getting_started">矢量图标使用</a>
 * <a href="http://github.com/brentvatne/react-native-video">Video</a>
+* Dialog
 
 
 
