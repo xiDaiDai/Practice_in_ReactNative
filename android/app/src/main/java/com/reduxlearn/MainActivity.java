@@ -1,5 +1,6 @@
 package com.reduxlearn;
 
+import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -44,6 +45,7 @@ public class MainActivity extends ReactActivity {
 
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ReactVideoPackage(),
             new VectorIconsPackage(),
             new AndroidReactPackage(),
                 new CodePush(this.getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), this, BuildConfig.DEBUG)

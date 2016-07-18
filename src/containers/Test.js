@@ -10,7 +10,8 @@ import {
 	Text,
 	Image,
 	Dimensions,
-	DeviceEventEmitter
+	DeviceEventEmitter,
+	ScrollView
 } from 'react-native';
 import AndroidToast from '../tests/Toast';
 import ImagePickerModule from '../tests/ImagePicker';
@@ -21,6 +22,7 @@ import PanResponder from '../tests/panResponseDemo';
 import IMUI from '../tests/imuiDemo';
 import VectorIcon from '../tests/VectorIcon';
 import WebView from '../tests/webviewDemo';
+import VideoPlayer from '../tests/videoPlayer';
 
 class Test extends Component {
 
@@ -39,7 +41,7 @@ class Test extends Component {
 
 		return (
 			<View style={{flex:1,flexDirection:'column',backgroundColor:'#fff',padding:10,alignItems:'center'}}>
-
+				<ScrollView>
 					<TouchableHighlight onPress={()=>this.onClick()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
@@ -98,11 +100,50 @@ class Test extends Component {
 				 		  ShowVectorIcon
 				 		 </Text>
 					</TouchableHighlight>
-
-
-
-
-            </View>
+					<TouchableHighlight onPress={()=>this.onShowVideo()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#ff2822'}}>
+				 		  ShowVideo
+				 		 </Text>
+					</TouchableHighlight>
+					<TouchableHighlight>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#a9a9a9'}}>
+				 		  ......
+				 		 </Text>
+					</TouchableHighlight>
+					<TouchableHighlight>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#a9a9a9'}}>
+				 		  ......
+				 		 </Text>
+					</TouchableHighlight>
+					<TouchableHighlight>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#a9a9a9'}}>
+				 		  ......
+				 		 </Text>
+					</TouchableHighlight>
+					<TouchableHighlight>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#a9a9a9'}}>
+				 		  ......
+				 		 </Text>
+					</TouchableHighlight>
+					<TouchableHighlight>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#a9a9a9'}}>
+				 		  ......
+				 		 </Text>
+					</TouchableHighlight>
+				</ScrollView>
+      </View>
 		);
 	}
 
@@ -157,6 +198,12 @@ class Test extends Component {
 	onShowWebview() {
 		this.props.navigator.push({
 			component: WebView,
+		})
+	}
+
+	onShowVideo() {
+		this.props.navigator.push({
+			component: VideoPlayer,
 		})
 	}
 }
