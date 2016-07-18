@@ -23,6 +23,7 @@ import IMUI from '../tests/imuiDemo';
 import VectorIcon from '../tests/VectorIcon';
 import WebView from '../tests/webviewDemo';
 import VideoPlayer from '../tests/videoPlayer';
+import ModalPage from '../tests/modalPage';
 
 class Test extends Component {
 
@@ -107,11 +108,11 @@ class Test extends Component {
 				 		  ShowVideo
 				 		 </Text>
 					</TouchableHighlight>
-					<TouchableHighlight>
+					<TouchableHighlight  onPress={()=>this.onShowModal()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
 				 		 margin:5,backgroundColor:'#a9a9a9'}}>
-				 		  ......
+				 		  ShowModal
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight>
@@ -204,6 +205,12 @@ class Test extends Component {
 	onShowVideo() {
 		this.props.navigator.push({
 			component: VideoPlayer,
+		})
+	}
+
+	onShowModal() {
+		this.props.navigator.push({
+			component: ModalPage,
 		})
 	}
 }
