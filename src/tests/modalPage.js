@@ -34,11 +34,13 @@ class ModalPage extends Component {
               <Image style={{height:40,width:40}}
               source={require('../images/mine.png')}></Image>
               <Text >any component here</Text>
-              <Text onPress={()=>{this.setModalVisible(!this.state.modalVisible)}}>close</Text>
+              <View style={{width:250,flexDirection:'row',justifyContent: 'space-between',marginTop:10}}>
+                <Text style={{flex:1,textAlign:'center',fontWeight:'bold'}} onPress={()=>{this.setModalVisible(!this.state.modalVisible)}}>yes</Text>
+                <Text style={{flex:1,textAlign:'center',fontWeight:'bold'}} onPress={()=>{this.setModalVisible(!this.state.modalVisible)}}>no</Text>
+              </View>
              </View>
           </View>
         </Modal>
-
         <TouchableHighlight
               style={{position:'absolute',bottom:0,left:0,right:0,height:50}}
               onPress={() => {
