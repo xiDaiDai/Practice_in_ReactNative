@@ -24,6 +24,8 @@ import VectorIcon from '../tests/VectorIcon';
 import WebView from '../tests/webviewDemo';
 import VideoPlayer from '../tests/videoPlayer';
 import ModalPage from '../tests/modalPage';
+import FetchPage from '../tests/FetchPage';
+import ProgressTest from '../tests/ProgressTest';
 
 class Test extends Component {
 
@@ -115,18 +117,18 @@ class Test extends Component {
 				 		  ShowModal
 				 		 </Text>
 					</TouchableHighlight>
-					<TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.fetchTest()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
 				 		 margin:5,backgroundColor:'#a9a9a9'}}>
-				 		  ......
+				 		  Promise
 				 		 </Text>
 					</TouchableHighlight>
-					<TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.progressBar()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
 				 		 margin:5,backgroundColor:'#a9a9a9'}}>
-				 		  ......
+				 		  ProgressBarAndroid
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight>
@@ -146,6 +148,12 @@ class Test extends Component {
 				</ScrollView>
       </View>
 		);
+	}
+
+	progressBar() {
+		this.props.navigator.push({
+			component: ProgressTest,
+		})
 	}
 
 	onClick() {
@@ -211,6 +219,12 @@ class Test extends Component {
 	onShowModal() {
 		this.props.navigator.push({
 			component: ModalPage,
+		})
+	}
+
+	fetchTest() {
+		this.props.navigator.push({
+			component: FetchPage,
 		})
 	}
 }
