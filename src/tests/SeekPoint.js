@@ -1,5 +1,6 @@
 import React, {
-  Component
+  Component,
+  PropTypes
 } from "react";
 import {
   View,
@@ -9,7 +10,7 @@ import {
   StyleSheet,
   Dimensions,
   Animated,
-  PanResponder
+  PanResponder,
 } from "react-native";
 
 
@@ -18,12 +19,29 @@ const SQUARE_DIMENSIONS = 20;
 
 class DotView extends Component {
 
+  static defaultProps = {
+    title: 'title',
+    backHidden: true,
+    actionHidden: true,
+
+  }
+  static propTypes = {
+    backFunc: PropTypes.func,
+    onSeekStart: PropTypes.func,
+    backHidden: PropTypes.bool,
+    actionHidden: PropTypes.bool,
+    length: PropTypes.number,
+    position: PropTypes.number,
+    progress: PropTypes.number,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       bg: 'blue',
       top: 0,
       left: 0,
+      onmove: false
 
     };
   }
@@ -36,26 +54,36 @@ class DotView extends Component {
       onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
       onPanResponderGrant: (evt, gestureState) => {
+        this.props.onSeekStart
         this._top = this.state.top;
         this._left = this.state.left;
         this.setState({
-          bg: 'red'
+          bg: 'red',
+          onmove: true
         });
+
       },
       onPanResponderMove: (evt, gestureState) => {
-        console.log(gestureState.dx)
+
+        console.log(gestureState.dx);
+        let currentLeft = (this._left + gestureState.dx) < 0 ? 0 : this._left + gestureState.dx;
+        let left = currentLeft > this.props.length ? this.props.length : currentLeft;
+        console.log('left :' + left);
         this.setState({
           top: this._top,
-          left: this._left + gestureState.dx
+          left: left
         })
       },
       onPanResponderTerminationRequest: (evt, gestureState) => true,
       onPanResponderRelease: (evt, gestureState) => {
+        let currentLeft = (this._left + gestureState.dx) < 0 ? 0 : this._left + gestureState.dx;
+        let left = currentLeft > this.props.length ? this.props.length : currentLeft;
 
         this.setState({
           bg: 'blue',
           top: this._top,
-          left: this._left + gestureState.dx
+          left: left,
+          onmove: false
         })
       },
       onPanResponderTerminate: (evt, gestureState) => {},
@@ -73,7 +101,7 @@ class DotView extends Component {
           height: SQUARE_DIMENSIONS,
           backgroundColor: this.state.bg,
           top: this.state.top,
-          left: this.state.left,
+          left: this.state.onmove ? this.state.left : this.props.position,
           borderRadius: 10,
           position: 'absolute'
         }

@@ -1,5 +1,6 @@
 import React, {
-  Component
+  Component,
+  PropTypes
 } from "react";
 import {
   View,
@@ -9,7 +10,7 @@ import {
   Dimensions,
   Modal,
   TouchableHighlight,
-  ProgressBarAndroid
+  ProgressBarAndroid,
 } from "react-native";
 
 import DotView from './SeekPoint';
@@ -17,6 +18,35 @@ import DotView from './SeekPoint';
 class ModalPage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      position: 0
+    }
+  }
+
+  static defaultProps = {
+    title: 'title',
+    backHidden: true,
+    actionHidden: true,
+
+  }
+  static propTypes = {
+
+    backFunc: PropTypes.func,
+    actionFunc: PropTypes.func,
+    backHidden: PropTypes.bool,
+    actionHidden: PropTypes.bool,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    progress: PropTypes.number,
+  }
+
+  componentDidMount() {
+    let counter = 0;
+    setInterval(() => {
+      this.setState({
+        position: counter++
+      })
+    }, 1000);
   }
 
   render() {
@@ -28,10 +58,18 @@ class ModalPage extends Component {
          indeterminate={false}
          style={{width:300,height:20}}
          styleAttr="Horizontal"/>
-         <DotView style={{}}></DotView>
+         <DotView
+          length={300}
+          position={this.state.position}
+          onSeekStart={()=>{this.startSeek()}}
+          style={{}}></DotView>
         </View>
       </View>
     );
+  }
+
+  startSeek() {
+
   }
 
 }
