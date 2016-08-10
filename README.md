@@ -22,6 +22,7 @@
 * <a href="http://microsoft.github.io/code-push/index.html#getting_started">矢量图标使用</a>
 * <a href="http://github.com/brentvatne/react-native-video">Video</a>
 * Dialog
+* 可手势拖动的seekbar
 
 
 
