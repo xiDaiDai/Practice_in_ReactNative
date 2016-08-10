@@ -20,6 +20,64 @@ class FetchPage extends Component {
     };
   }
 
+  componentDidMount() {
+    this.get(global.LOGIN_URL + params, HttpConfig.JSON)
+      .then((responseData) => {
+        if (responseData.includes("status")) {
+          // console.log("含有status字符串");
+          let responseDa = JsonUtil.stringToJson(responseData);
+          // Toast.show(responseData.status, "center");
+          console.log(responseDa.status);
+          console.log(responseDa);
+          if (responseDa.status === 0) {
+            dispatch(loginSuccess(responseDa));
+          } else {
+            dispatch(loginFail(responseDa));
+            // ToastAndroid.show(responseData.description, 2000)
+            Toast.show(responseDa.description, "center");
+          }
+        }
+
+      }).catch((err) => {
+        dispatch(loginError());
+        // ToastAndroid.show("网络异常", 2000)
+        Toast.show(err.message, "center");
+      }).done();
+  }
+
+  post(url, data, hdata) {
+    var fetchOptions = {
+      method: 'POST',
+      headers: hdata,
+      body: data
+    };
+    return new Promise(function(resolve, reject) {
+      fetch(url, fetchOptions)
+        .then((response) => {
+          resolve(response.text())
+        })
+        .catch((item) => {
+          reject(item)
+        });
+    });
+  }
+
+  //get请求
+  get(url, hdata) {
+    var fetchOptions = {
+      method: 'GET',
+      headers: hdata
+    };
+    return new Promise(function(resolve, reject) {
+      fetch(url, fetchOptions)
+        .then((response) => {
+          resolve(response.text())
+        })
+        .catch((item) => {
+          reject(item)
+        });
+    });
+  }
   render() {
     return (
       <View style={{flex:1,backgroundColor:'#F5FCFF'}}>
