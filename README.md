@@ -23,6 +23,7 @@
 * <a href="http://github.com/brentvatne/react-native-video">Video</a>
 * Dialog
 * 可手势拖动的seekbar
+* Android平台 友盟SDK 第三方登陆封装
 
 
 
