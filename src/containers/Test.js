@@ -26,6 +26,7 @@ import VideoPlayer from '../tests/videoPlayer';
 import ModalPage from '../tests/modalPage';
 import FetchPage from '../tests/FetchPage';
 import ProgressTest from '../tests/ProgressTest';
+import AlarmModule from '../components/alarmModule';
 
 class Test extends Component {
 
@@ -131,11 +132,11 @@ class Test extends Component {
 				 		  ProgressBarAndroid
 				 		 </Text>
 					</TouchableHighlight>
-					<TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.alarm()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
-				 		 margin:5,backgroundColor:'#a9a9a9'}}>
-				 		  ......
+				 		 margin:5,backgroundColor:'#AE81FF'}}>
+				 		  AndroidAlarm&Notification(10s)
 				 		 </Text>
 					</TouchableHighlight>
 					<TouchableHighlight>
@@ -150,6 +151,9 @@ class Test extends Component {
 		);
 	}
 
+	alarm() {
+		AlarmModule.setAlarm(10);
+	}
 	progressBar() {
 		this.props.navigator.push({
 			component: ProgressTest,

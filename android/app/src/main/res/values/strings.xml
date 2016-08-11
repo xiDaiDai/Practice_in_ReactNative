@@ -1,5 +1,5 @@
 <resources>
 
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">yblXzLortPU_fWspCg8s0FiIpy9aNJFb5HgSW</string>
-    <string name="app_name">reduxLearn</string>
+    <string name="app_name">LearnRN</string>
 </resources>

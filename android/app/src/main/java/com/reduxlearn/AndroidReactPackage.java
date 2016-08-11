@@ -21,6 +21,7 @@ public class AndroidReactPackage implements ReactPackage {
         // 这里的MyToastModule是之前他添加的module
         modules.add(new AndroidToastModule(reactContext));
         modules.add(new ImagePickerModule(reactContext));
+        modules.add(new AlarmModule(reactContext));
 
         return modules;
     }
