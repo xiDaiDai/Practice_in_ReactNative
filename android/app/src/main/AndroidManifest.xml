@@ -15,6 +15,15 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57ad256ae0f55a9a9f00359b" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="f2a9c75e40f9d3ec5b1c91e4d9ba979e" >
+        </meta-data>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

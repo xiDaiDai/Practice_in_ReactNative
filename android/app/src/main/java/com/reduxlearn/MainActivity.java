@@ -1,5 +1,9 @@
 package com.reduxlearn;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+
 import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactActivity;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -7,6 +11,8 @@ import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.microsoft.codepush.react.CodePush;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengRegistrar;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,5 +57,16 @@ public class MainActivity extends ReactActivity {
                 new CodePush(this.getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), this, BuildConfig.DEBUG)
 
         );
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Context context = getApplicationContext();
+        PushAgent mPushAgent = PushAgent.getInstance(context);
+        mPushAgent.enable();
+        PushAgent.getInstance(context).onAppStart();
+        String device_token = UmengRegistrar.getRegistrationId(context);
+//        Log.e("device_token", device_token);
     }
 }
