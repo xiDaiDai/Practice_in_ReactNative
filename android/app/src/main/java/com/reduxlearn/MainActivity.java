@@ -7,6 +7,7 @@ import android.util.Log;
 import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.bridge.ReactApplicationContext;
+import com.greatdroid.reactnative.media.MediaKitPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
@@ -55,6 +56,7 @@ public class MainActivity extends ReactActivity {
             new ReactVideoPackage(),
             new VectorIconsPackage(),
             new AndroidReactPackage(),
+                new MediaKitPackage(),
                 new CodePush(this.getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), this, BuildConfig.DEBUG)
 
         );

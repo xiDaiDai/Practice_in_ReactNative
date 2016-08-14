@@ -117,6 +117,7 @@
     <orderEntry type="module" module-name="PushSDK" exported="" />
     <orderEntry type="module" module-name="react-native-video" exported="" />
     <orderEntry type="module" module-name="react-native-vector-icons" exported="" />
+    <orderEntry type="module" module-name="react-native-media-kit" exported="" />
     <orderEntry type="module" module-name="react-native-code-push" exported="" />
   </component>
 </module>

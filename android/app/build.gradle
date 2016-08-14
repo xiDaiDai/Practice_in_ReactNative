@@ -130,6 +130,7 @@ dependencies {
     compile project(':react-native-code-push')
     compile project(':PushSDK')
     compile files('libs/gson-2.3.1.jar')
+    compile project(':react-native-media-kit')
 }
 
 // Run this once to be able to run the application with BUCK
