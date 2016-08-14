@@ -152,7 +152,7 @@ class Test extends Component {
 	}
 
 	alarm() {
-		AlarmModule.setAlarm(10);
+		AlarmModule.setAlarm(20, "title", "content");
 	}
 	progressBar() {
 		this.props.navigator.push({

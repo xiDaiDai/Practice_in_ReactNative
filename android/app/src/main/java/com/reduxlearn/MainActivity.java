@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactActivity;
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactPackage;
@@ -67,6 +68,9 @@ public class MainActivity extends ReactActivity {
         mPushAgent.enable();
         PushAgent.getInstance(context).onAppStart();
         String device_token = UmengRegistrar.getRegistrationId(context);
-//        Log.e("device_token", device_token);
+
+        AlarmModule.cancelAlarm(context);
+        AlarmModule.setAlarm(context);
+
     }
 }

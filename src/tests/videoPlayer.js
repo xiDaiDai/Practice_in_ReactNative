@@ -27,7 +27,7 @@ class VideoPlayer extends Component {
 
     return (
       <View style={styles.container}>
-        <Video source={{uri: "https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8"}} // Can be a URL or a local file.
+        <Video source={{uri: "rtmp://live.renjk.com/video/zjztest"}} // Can be a URL or a local file.
                rate={1.0}                   // 0 is paused, 1 is normal.
                volume={1.0}                 // 0 is muted, 1 is normal.
                muted={false}                // Mutes the audio entirely.
