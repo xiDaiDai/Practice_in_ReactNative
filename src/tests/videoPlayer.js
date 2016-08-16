@@ -10,11 +10,10 @@ import {
   Dimensions,
 } from "react-native";
 
-// import Video from 'react-native-video';
+import Video from 'react-native-video';
 // import {
 //   Video
 // } from 'react-native-media-kit';
-import MyVideoPlayer from "./MyVideoPlayer";
 
 const width = Dimensions.get('window').width;
 
@@ -29,20 +28,19 @@ class VideoPlayer extends Component {
 
 
   render() {
-
-
       return (
         <View style={styles.container}>
-         /*<Video source={{uri: "http://renjk-video.oss-cn-hangzhou.aliyuncs.com/record/video/29198_20160725112904/1469524585.m3u8"}} // Can be a URL or a local file.
+         <Video source={{uri: "http://renjk-video.oss-cn-hangzhou.aliyuncs.com/record/video/29198_20160725112904/1469524585.m3u8"}} // Can be a URL or a local file.
                    rate={1.0}                   // 0 is paused, 1 is normal.
                    volume={1.0}                 // 0 is muted, 1 is normal.
                    muted={false}                // Mutes the audio entirely.
-                   paused={false}               // Pauses playback entirely.
+                   paused={false}
+                   controls={true}              // Pauses playback entirely.
                    resizeMode="cover"           // Fill the whole screen at aspect ratio.
                    repeat={true}                // Repeat forever.
                    playInBackground={false}     // Audio continues to play when app entering background.
                    playWhenInactive={false}     // [iOS] Video continues to play when control or notification center are shown.
-                   style={styles.backgroundVideo} />*/
+                   style={styles.backgroundVideo} />
         </View>
       );
     }

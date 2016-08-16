@@ -25,6 +25,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     .getNotification() // 需要注意build()是在API level16及之后增加的，在API11中可以使用getNotificatin()来代替
             ;
             notify.flags |= Notification.FLAG_AUTO_CANCEL;
+            notify.defaults |= Notification.DEFAULT_SOUND;
             NotificationManager manager =(NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             manager.notify(Notification.FLAG_AUTO_CANCEL, notify);
         }else{

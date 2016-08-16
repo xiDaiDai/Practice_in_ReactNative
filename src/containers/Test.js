@@ -27,7 +27,7 @@ import ModalPage from '../tests/modalPage';
 import FetchPage from '../tests/FetchPage';
 import ProgressTest from '../tests/ProgressTest';
 import AlarmModule from '../components/alarmModule';
-
+let id = 1;
 class Test extends Component {
 
 	constructor(props) {
@@ -151,8 +151,10 @@ class Test extends Component {
 		);
 	}
 
+
 	alarm() {
-		AlarmModule.setAlarm(20, "title", "content");
+
+		AlarmModule.setAlarm(id++, 10, "title", "content");
 	}
 	progressBar() {
 		this.props.navigator.push({

@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * Created by admin on 2016/8/10.
@@ -32,7 +31,8 @@ public class AlarmModule extends ReactContextBaseJavaModule implements Lifecycle
     public AlarmModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.context = reactContext;
-        sharedPreferences = reactContext.getSharedPreferences("timer",Context.MODE_PRIVATE);
+        sharedPreferences = reactContext.getApplicationContext().getSharedPreferences("timer", Context.MODE_PRIVATE);
+
     }
 
     @Override
@@ -41,31 +41,50 @@ public class AlarmModule extends ReactContextBaseJavaModule implements Lifecycle
     }
 
     @ReactMethod
-    public void setAlarm(int sec,String title,String content) {
+    public void setAlarm(int id,int sec,String title,String content) {
         Activity currenActivity = getCurrentActivity();
         if(currenActivity== null) return;
         Intent intent =new Intent(getCurrentActivity(), AlarmReceiver.class);
         intent.putExtra("title",title);
-        intent.putExtra("content",content);
+        intent.putExtra("content", content);
         intent.setAction("short");
-        PendingIntent sender=
-                PendingIntent.getBroadcast(currenActivity, 0, intent, 0);
-
         //设定一个五秒后的时间
         Calendar calendar=Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
         calendar.add(Calendar.SECOND, sec);
+        PendingIntent sender=
+                PendingIntent.getBroadcast(currenActivity,id, intent, 0);
         AlarmManager alarm=(AlarmManager)currenActivity.getSystemService(currenActivity.ALARM_SERVICE);
         alarm.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
 
-        AlarmObj alarmObj = new AlarmObj(String.valueOf(calendar.getTimeInMillis()),title,content);
+        AlarmObj alarmObj = new AlarmObj(String.valueOf(calendar.getTimeInMillis()),title,content,id);
+        Log.e("alarmObject:===",alarmObj.toString());
         Gson gson = new Gson();
         String alarmStr = gson.toJson(alarmObj);
-        HashSet set = new HashSet();
+        HashSet set = (HashSet) sharedPreferences.getStringSet("alarm", null);
+        if(set == null){
+            set = new HashSet();
+         }
         set.add(alarmStr);
         sharedPreferences.edit().putStringSet("alarm", set).commit();
+        Iterator<String> iterator=set.iterator();
 
+        while(iterator.hasNext()){
+            String ala = iterator.next();
+            Log.e("alarmItem",ala);
+        }
+
+
+    }
+
+    @ReactMethod
+    public static void cancelAlarm(int id){
+        Intent intent =new Intent(context, AlarmReceiver.class);
+        PendingIntent sender=
+                PendingIntent.getBroadcast(context, id, intent, 0);
+        AlarmManager alarm=(AlarmManager)context.getSystemService(activity.ALARM_SERVICE);
+        alarm.cancel(sender);
     }
 
 
@@ -86,7 +105,7 @@ public class AlarmModule extends ReactContextBaseJavaModule implements Lifecycle
                 intent.putExtra("content", alarmObj.getContent());
                 intent.setAction("short");
                 PendingIntent sender =
-                        PendingIntent.getBroadcast(context, 0, intent, 0);
+                        PendingIntent.getBroadcast(context, alarmObj.getId(), intent, 0);
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(Long.valueOf(alarmObj.getTime()));
                 AlarmManager alarm = (AlarmManager) context.getSystemService(activity.ALARM_SERVICE);
@@ -97,8 +116,6 @@ public class AlarmModule extends ReactContextBaseJavaModule implements Lifecycle
     }
 
     public static void cancelAlarm(Context context){
-
-
         Intent intent =new Intent(context, AlarmReceiver.class);
         PendingIntent sender=
                 PendingIntent.getBroadcast(context, 0, intent, 0);
