@@ -27,6 +27,7 @@ import ModalPage from '../tests/modalPage';
 import FetchPage from '../tests/FetchPage';
 import ProgressTest from '../tests/ProgressTest';
 import AlarmModule from '../components/alarmModule';
+import AdBanner from '../tests/AdBanner';
 let id = 1;
 class Test extends Component {
 
@@ -139,7 +140,7 @@ class Test extends Component {
 				 		  AndroidAlarm&Notification(10s)
 				 		 </Text>
 					</TouchableHighlight>
-					<TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.ad()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
 				 		 margin:5,backgroundColor:'#a9a9a9'}}>
@@ -151,7 +152,11 @@ class Test extends Component {
 		);
 	}
 
-
+	ad() {
+		this.props.navigator.push({
+			component: AdBanner,
+		})
+	}
 	alarm() {
 
 		AlarmModule.setAlarm(id++, 10, "title", "content");
