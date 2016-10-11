@@ -10,17 +10,22 @@ import {
 	Text,
 	View
 } from 'react-native';
-
+import NavigationBar from './navigationBar';
 
 class MovieScreen extends Component {
 
 	render() {
 		return (
 			<View style={{flex:1,justifyContent:'center',backgroundColor:'#eee'}}>
+          <NavigationBar
+          title='个人资料'
+          backFunc={()=>{}}
+          backText='返回'
+          backIcon={require('../images/mine.png')}/>
           <View style={styles.row}>
 		<Image
               source={{uri:this.props.route.movie.posters.original}}
-            
+
               style={styles.cellImage}
             />
             <View style={styles.textContainer}>

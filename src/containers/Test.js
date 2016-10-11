@@ -28,6 +28,7 @@ import FetchPage from '../tests/FetchPage';
 import ProgressTest from '../tests/ProgressTest';
 import AlarmModule from '../components/alarmModule';
 import AdBanner from '../tests/AdBanner';
+import ParallaxView from '../tests/parallaxView';
 let id = 1;
 class Test extends Component {
 
@@ -140,6 +141,13 @@ class Test extends Component {
 				 		  AndroidAlarm&Notification(10s)
 				 		 </Text>
 					</TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.parallax()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#AE81FF'}}>
+				 		  parallax ScrollView
+				 		 </Text>
+					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.ad()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
@@ -150,6 +158,12 @@ class Test extends Component {
 				</ScrollView>
       </View>
 		);
+	}
+
+	parallax(){
+		this.props.navigator.push({
+			component: ParallaxView,
+		})
 	}
 
 	ad() {
