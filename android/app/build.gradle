@@ -91,6 +91,15 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+
+     signingConfigs {
+        release {
+            storeFile file("selfhealth.jks")
+            storePassword "abcd.1234"
+            keyAlias "selfhealth"
+            keyPassword "abcd.1234"
+        }
+    }
     splits {
         abi {
             reset()
@@ -100,9 +109,14 @@ android {
         }
     }
     buildTypes {
-        release {
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+         release {
+            minifyEnabled false
+            signingConfig  signingConfigs.release
+            //  proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

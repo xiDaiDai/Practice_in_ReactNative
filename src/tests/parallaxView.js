@@ -18,63 +18,75 @@ import {
   ToastAndroid
 } from "react-native";
 const {height,width} = Dimensions.get('window');
-
+const maxHeight = 100;
 class StuffDetailView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: 0,
-      bounceValue: new Animated.Value(0),
-      top: 0,
+      pan: new Animated.Value(0), // inits to zero
+      scrollEnabled:true
     };
     this._y=0;
   }
 
   componentWillMount(){
     this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (evt, gestureState) => {return false},
-      onStartShouldSetPanResponderCapture: (evt, gestureState) => {return false},
-      onMoveShouldSetPanResponder: (evt, gestureState) => {return gestureState.dy>=0&&this._y==0?true:false;},
-      onMoveShouldSetPanResponderCapture: (evt, gestureState) => {return gestureState.dy>=0&&this._y==0?true:false},
-      onPanResponderGrant: (evt, gestureState) => {this._top = 0;},
-      onPanResponderMove: (evt, gestureState) => {
-        this._top = gestureState.dy<=0?0:gestureState.dy>=100?100:gestureState.dy;
-        this.setAnimateValue((this._top+200)/200);
-        this.setState({top:this._top});
-      },
-      onPanResponderTerminationRequest: (evt, gestureState) => true,
-      onPanResponderRelease: (evt, gestureState) => {
-         this._top = 0;
-         this.setAnimateValue(1);
-         this.setState({top:0});
-          // Animated.timing(
-          //   this.state.bounceValue,
-          //   {
-          //     toValue: 1,
-          //     duration: (this._top+200),
-          //   },
-          // ).start();
+      onStartShouldSetPanResponder: (evt, gestureState) => {return false;},
+      onStartShouldSetPanResponderCapture: (evt, gestureState) => {return true;},
+      onMoveShouldSetPanResponder: (evt, gestureState) => {return true;},
+      onMoveShouldSetPanResponderCapture: (evt, gestureState) => {return true},
+      onPanResponderGrant: (evt, gestureState) => {},
+      onPanResponderMove:  (evt,gestureState)=>{
+        if(this._y==0&&gestureState.dy>0){
+          this.setState({
+              scrollEnabled:false
+          });
+        }else{
+          this.setState({
+              scrollEnabled:true
+          });
+        }
+        this.top = gestureState.dy<=0?0:gestureState.dy>=maxHeight?maxHeight:gestureState.dy;
+        this.state.pan.setValue(this.top);
 
       },
+
+      onPanResponderTerminationRequest: (evt, gestureState) => true,
+      onPanResponderRelease: (evt, gestureState) => {
+        // if(this._y==0)
+         Animated.timing(
+           this.state.pan,
+           {toValue:0,
+            duration: 3*this.top}
+         ).start();
+
+
+       },
       onPanResponderTerminate: (evt, gestureState) => {},
       onShouldBlockNativeResponder: (evt, gestureState) => {return false;},
     });
   }
 
-  render() {
+  componentDidMount(){
 
+  }
+
+  render() {
     return (
-            <View style={styles.container} {...this._panResponder.panHandlers}>
+
                 <ScrollView
                   ref='scrollview'
                   style={{flex:1}}
                   onScroll={(event)=>{this.onScroll(event)}}
                   scrollEventThrottle={10}
+                  scrollEnabled={this.state.scrollEnabled}
                   >
+                  <View {...this._panResponder.panHandlers} style={[styles.container]}>
                   {this.renderTopContent()}
                   {this.renderText()}
+                  </View>
                 </ScrollView>
-              </View>
+
 
             );
   }
@@ -82,53 +94,64 @@ class StuffDetailView extends Component {
 
   renderTopContent(){
     return (
-      <View style={{marginBottom:10}}>
+      <View style={{marginBottom:10,alignItems:'center'}}>
       {this.renderScaleImage()}
       </View>);
   }
 
   renderText(){
     return(
-      <View style={{marginTop:this.state.top/2,marginLeft:10,marginRight:10}}>
-        <Text style={{fontSize:18,color:'black',margin:10,lineHeight:30}}>title is title</Text>
-        <View style={{flexDirection:'row',alignItems:'center',marginLeft:10,marginRight:10}}>
+      <Animated.View style={[{marginLeft:10,marginRight:10},{
+              transform: [   // Array order matters
+                {translateY: this.state.pan.interpolate({
+                  inputRange: [0, maxHeight],
+                  outputRange: [0, 50],
+                })},
+              ]}]}>
+        <Text style={{fontSize:18,color:'black',lineHeight:30}}>TITLE</Text>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
           <Image style={styles.icon} source={{uri:'https://assets.renjk.com/mem/16100120504523.jpg'}}/>
-          <Text style={{fontSize:15,color:'#656568',marginLeft:10}}>maoamo</Text>
-          <Text style={{fontSize:15,color:'#bbbbbb',flex:1,textAlign:'right'}}>setTime</Text>
+          <Text style={{fontSize:15,color:'#656568',marginLeft:10}}>NICKNAME</Text>
+          <Text style={{fontSize:15,color:'#bbbbbb',flex:1,textAlign:'right'}}>TIME</Text>
         </View>
-        <View style={{flex:1}}>
-           <Text>
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-             AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-           </Text>
+        <View style={{flex:1,backgroundColor:'#f1f1f1',justifyContent:'center',alignItems:'center'}}>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
+          <Text style={{fontSize:20}}>CONTENT</Text>
         </View>
-      </View>
+      </Animated.View>
       );
   }
 
   renderScaleImage(){
      return (
             <Animated.Image
-                style={[styles.background, {
-                    height: 200,
-                    transform: [
-                    {scale: this.state.bounceValue},
-                    ]
-                }]}
+                style={[{height:200, width: width},{
+                transform: [   // Array order matters
+                {scale: this.state.pan.interpolate({
+                      inputRange: [0, maxHeight],
+                      outputRange: [1, 1.5],
+                   })}]}]}
                 source={{uri:'http://img.bizhi.sogou.com/images/2014/02/12/517391.jpg'}}
                 >
             </Animated.Image>
@@ -136,23 +159,10 @@ class StuffDetailView extends Component {
   }
 
   onScroll(event) {
-    const MAX = 200;
     let y = event.nativeEvent.contentOffset.y;
-    MAX <= y ? this.setState({show: 1}) : this.setState({show: y/200})
+    maxHeight <= y ? this.setState({show: 1}) : this.setState({show: y/maxHeight})
     this._y =y;
   }
-
-  setAnimateValue(value){
-    this.state.bounceValue.setValue(value);
-    Animated.spring(
-      this.state.bounceValue,
-      {
-        toValue: value,
-        friction: 0.5,
-      }
-    ).start();
-  }
-
 
 }
 
@@ -176,9 +186,10 @@ const styles = StyleSheet.create({
     },
 
   icon: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     marginLeft: 2.5,
+    borderRadius:20
   },
 });
 
