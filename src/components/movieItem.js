@@ -35,9 +35,9 @@ class MovieItem extends Component {
               <Text style={styles.movieTitle} numberOfLines={2}>
                 {this.props.movie.title}
               </Text>
-              
+
             </View>
-           
+
           </View>
         </TouchableElement>
 
@@ -60,6 +60,7 @@ var styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     marginBottom: 2,
+    color:'#232325'
   },
   movieYear: {
     color: '#999999',
@@ -73,9 +74,9 @@ var styles = StyleSheet.create({
   },
   cellImage: {
     backgroundColor: '#dddddd',
-    height: 93,
+    height: 60,
     marginRight: 10,
-    width: 60,
+    width: 45,
   },
   cellBorder: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',

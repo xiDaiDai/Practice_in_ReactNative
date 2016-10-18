@@ -17,13 +17,8 @@ class MovieScreen extends Component {
 	render() {
 		return (
 			<View style={{flex:1,justifyContent:'center',backgroundColor:'#eee'}}>
-          <NavigationBar
-          title='个人资料'
-          backFunc={()=>{}}
-          backText='返回'
-          backIcon={require('../images/mine.png')}/>
           <View style={styles.row}>
-		<Image
+		    <Image
               source={{uri:this.props.route.movie.posters.original}}
 
               style={styles.cellImage}
@@ -56,8 +51,8 @@ var styles = StyleSheet.create({
 	movieTitle: {
 		flex: 1,
 		fontSize: 16,
-		fontWeight: '500',
 		marginBottom: 2,
+    color:'#232325'
 	},
 	movieYear: {
 		color: '#999999',
@@ -71,9 +66,9 @@ var styles = StyleSheet.create({
 	},
 	cellImage: {
 		backgroundColor: '#dddddd',
-		height: 186,
+		height: 60,
 		marginRight: 10,
-		width: 120,
+		width: 50,
 	},
 	cellBorder: {
 		backgroundColor: 'rgba(0, 0, 0, 0.1)',

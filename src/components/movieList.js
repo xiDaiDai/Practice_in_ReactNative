@@ -61,9 +61,8 @@ class MovieList extends Component {
 		if (this.props.isLoadingTail) {
 			return (
 				<View  style={{alignItems: 'center',justifyContent:'center'}}>
-				  <ProgressBarAndroid styleAttr="Inverse"/>
-                  <Text style={{fontSize:16,color:'#000'}}>loading......</Text>
-                </View>
+				  <ProgressBarAndroid styleAttr="Small" color='#232325'/>
+        </View>
 			);
 
 		}

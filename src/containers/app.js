@@ -47,9 +47,9 @@ class App extends Component {
 
 				    selected={this.state.selectedTab === 'home'}
 				    onPress={() => this.setState({ selectedTab: 'home' })}
-				    title="Top100"
-				    renderIcon={() => <Icon name="heartbeat" size={30} color="#444"/>}
-    				renderSelectedIcon={() => <Icon name="heartbeat" size={30} color="#f00"/>}
+				    title="real"
+				    renderIcon={() => <Icon name="flash" size={30} color="#444"/>}
+    				renderSelectedIcon={() => <Icon name="flash" size={30} color="#f00"/>}
 				     >
 				    <Navigator
 		              style={styles.container}
@@ -60,8 +60,8 @@ class App extends Component {
 				  <TabNavigator.Item
 					  selected={this.state.selectedTab === 'profile'}
 					  onPress={() => this.setState({ selectedTab: 'profile' })}
-					  renderIcon={() => <Icon name="chrome" size={30} color="#444"/>}
-						renderSelectedIcon = {() => <Icon name="chrome" size={30} color="#f00"/>} title = "CodePush" >
+					  renderIcon={() => <Icon name="fire" size={30} color="#444"/>}
+						renderSelectedIcon = {() => <Icon name="fire" size={30} color="#f00"/>} title = "shit" >
 				    <Navigator
 		              style={styles.container}
 		              initialRoute={{component: Test}}

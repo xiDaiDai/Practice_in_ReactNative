@@ -27,8 +27,10 @@ import ModalPage from '../tests/modalPage';
 import FetchPage from '../tests/FetchPage';
 import ProgressTest from '../tests/ProgressTest';
 import AlarmModule from '../components/alarmModule';
-import AdBanner from '../tests/AdBanner';
+import AdBanner from '../tests/refreshListView';
+import PullToRefresh from '../tests/refreshListView';
 import ParallaxView from '../tests/parallaxView';
+
 let id = 1;
 class Test extends Component {
 
@@ -148,6 +150,13 @@ class Test extends Component {
 				 		  parallax ScrollView
 				 		 </Text>
 					</TouchableHighlight>
+					<TouchableHighlight onPress={()=>this.customPullToRefreshd()}>
+				 		 <Text style={{textAlign:'center',
+				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
+				 		 margin:5,backgroundColor:'#a9a9a9'}}>
+				 		  CustomPullToRefresh(iOS&Android)
+				 		 </Text>
+					</TouchableHighlight>
 					<TouchableHighlight onPress={()=>this.ad()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
@@ -166,9 +175,15 @@ class Test extends Component {
 		})
 	}
 
+	customPullToRefreshd() {
+		this.props.navigator.push({
+			component: PullToRefresh,
+		})
+	}
+
 	ad() {
 		this.props.navigator.push({
-			component: AdBanner,
+			component: PullToRefresh,
 		})
 	}
 	alarm() {
