@@ -30,7 +30,7 @@ import AlarmModule from '../components/alarmModule';
 import AdBanner from '../tests/refreshListView';
 import PullToRefresh from '../tests/refreshListView';
 import ParallaxView from '../tests/parallaxView';
-
+import NewModal from '../tests/newModal';
 let id = 1;
 class Test extends Component {
 
@@ -157,16 +157,22 @@ class Test extends Component {
 				 		  CustomPullToRefresh(iOS&Android)
 				 		 </Text>
 					</TouchableHighlight>
-					<TouchableHighlight onPress={()=>this.ad()}>
+					<TouchableHighlight onPress={()=>this.newModal()}>
 				 		 <Text style={{textAlign:'center',
 				 		 fontSize:20,color:'#fff',width:WINDOW_WIDTH-20,padding:5,
 				 		 margin:5,backgroundColor:'#a9a9a9'}}>
-				 		  ......
+				 		  newmodal
 				 		 </Text>
 					</TouchableHighlight>
 				</ScrollView>
       </View>
 		);
+	}
+
+	newModal(){
+		this.props.navigator.push({
+			component: NewModal,
+		})
 	}
 
 	parallax(){
