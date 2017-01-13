@@ -59,10 +59,10 @@ public class DonutProgress extends View {
     float y;
 
     private final float default_stroke_width;
-    private final int default_finished_color = Color.rgb(66, 145, 241);
-    private final int default_unfinished_color = Color.rgb(204, 204, 204);
+    private final int default_finished_color = Color.rgb(31, 185, 252);
+    private final int default_unfinished_color = Color.rgb(240, 240, 240);
     private final int default_circle_color = Color.rgb(255, 0, 0);
-    private final int default_text_color = Color.rgb(66, 145, 241);
+    private final int default_text_color = Color.rgb(240, 240, 240);
     private final int default_inner_bottom_text_color = Color.rgb(66, 145, 241);
     private final int default_inner_background_color = Color.TRANSPARENT;
     private final int default_max = 100;
@@ -92,10 +92,10 @@ public class DonutProgress extends View {
     private static final String INSTANCE_INNER_DRAWABLE = "inner_drawable";
 
 
-    int percent=0;
-    int startInnerValue = 5;
+    float percent=0;
     private Timer timer;
     private TimerTask task;
+    private boolean isCanceled = true;
     private Handler doActionHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -104,14 +104,21 @@ public class DonutProgress extends View {
 
             switch (msgId) {
                 case 1:
-                    setDonut_progress(String.valueOf((percent++)/10));
-                    if(percent==1000&&startInnerValue>0){
-                        percent=0;
-                        setText(String.valueOf(--startInnerValue));
-                    }else if(startInnerValue<=0){
+                    setDonut_progress(String.valueOf((percent+=0.1) / 5.0));
+                    setText(String.valueOf(percent));
+                    if(percent==500){
                         timer.cancel();
+                        isCanceled = true;
                         setText(String.valueOf(0));
                         setDonut_progress(String.valueOf(0));
+                    }else if(percent<500){
+                        setText(String.valueOf((5 - (int)percent / 100)));
+                    }else if(percent>500){
+                        timer.cancel();
+                        isCanceled = true;
+                        setText(String.valueOf(0));
+                        setDonut_progress(String.valueOf(0));
+
                     }
 
                     break;
@@ -539,17 +546,17 @@ public class DonutProgress extends View {
     }
     public void setDonut_progress(String percent){
         if(!TextUtils.isEmpty(percent)){
-            setProgress(Integer.parseInt(percent));
+            setProgress(Float.valueOf(percent));
         }
     }
 
 
-    public void setInnerText(String InnerText){
-        setText(InnerText);
-    }
+
 
 
     public  void createTask() {
+        if(!isCanceled) return;
+        isCanceled = false;
         timer = new Timer();
         task = new TimerTask() {
             @Override
@@ -559,8 +566,7 @@ public class DonutProgress extends View {
                 doActionHandler.sendMessage(message);
             }
         };
-        startInnerValue = 5;
-        setText(String.valueOf(startInnerValue));
+        percent=0;
         timer.schedule(task, 0, 1);
     }
 }

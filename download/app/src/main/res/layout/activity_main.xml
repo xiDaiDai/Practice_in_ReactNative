@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#fff"
+    android:background="#000"
     tools:context="com.renjk.download.MainActivity">
 
 

@@ -1,5 +1,6 @@
 package com.renjk.download;
 
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.webkit.DownloadListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,10 +30,11 @@ public class MainActivity extends AppCompatActivity implements DownloadVideoList
 
             switch (msgId) {
                 case 1:
-                    progress.setDonut_progress(String.valueOf((percent++)/10));
-                    if(percent==1000&&startInnerValue>0){
+                    progress.setDonut_progress(String.valueOf((percent++)/50));
+                    if(percent==5000&&startInnerValue>0){
                         percent=0;
-                        progress.setText(String.valueOf(--startInnerValue));
+                    }else if(percent<=5000){
+                        progress.setText(String.valueOf(5-percent/1000));
                     }else if(startInnerValue<=0){
                         timer.cancel();
                         progress.setText(String.valueOf(0));
@@ -57,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements DownloadVideoList
                 progress.createTask();
             }
         });
-
-
+        long size = FileUtils.getFolderSize(new File(Environment.getExternalStorageDirectory().getAbsolutePath()+ "/stepic/"));
+        btn_control.setText(FileUtils.getFormatSize(size));
 
     }
 
